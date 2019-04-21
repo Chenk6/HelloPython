@@ -61,7 +61,7 @@ class QianChengSpider(object):
             time.sleep(2)
 
         string = json.dumps(self.items, ensure_ascii=False)
-        with open('zhilian1.txt', 'w', encoding='utf-8')as f:
+        with open('qiancheng.txt', 'w', encoding='utf-8')as f:
             f.write(string)
 
 
