@@ -5,3 +5,4 @@ scrawler文件夹下是我在学习爬虫的过程中所爬取的一些小的项
 #前程无忧--bs4
 #段子--xpath
 #懒加载图片--xpath
+#淘宝评论--Ajax-jsonpath
