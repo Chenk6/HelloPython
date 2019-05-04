@@ -10,6 +10,9 @@ crawl_list = []
 #存放解析网页线程
 parse_list = []
 
+# 标记位，用来判断解析线程何时退出
+g_flag = True
+
 class CrawlThread(threading.Thread):
     def __init__(self,name,page_queue,data_queue):
         super(CrawlThread,self).__init__()
@@ -48,7 +51,10 @@ class ParseThread(threading.Thread):
     def run(self):
         print('%s.....线程开始'%self.name)
         while 1:
-            data = self.data_queue.get(True, 10)
+            if g_flag == False:
+                break
+            # 从data_queue中取出一页数据
+            data = self.data_queue.get()
             # 解析内容即可
             self.parse_content(data)
 
@@ -117,6 +123,17 @@ def main():
     #启动所有解析网页线程
     for pthread in parse_list:
         pthread.start()
+
+    # 首先判断页码队列是否为空，为空之后再往下判断数据队列是否为空
+    while 1:
+        if page_queue.empty():
+            break
+    # 判断数据队列是否为空，为空了修改标记位，解析线程中根据标记位来判断何时退出线程
+    while 1:
+        if data_queue.empty():
+            global g_flag
+            g_flag = False
+            break
 
      #关闭所有爬取线程
     for cthread in crawl_list:
