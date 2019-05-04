@@ -11,3 +11,4 @@ scrawler文件夹下是我在学习爬虫的过程中所爬取的一些小的项
 #tesseract自动识别登录，但成功率很低。
 #百度翻译的接口中的sign参数随给定的querry值变化，通过js函数来动态的生成sign实现翻译的功能
 #下载视频捕获不到视频的url，通过headlesschromer得到browser.page_sourse,再使用xpath的方法找到视频的url。
+#多线程下载网页内容
